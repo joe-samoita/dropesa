@@ -22,7 +22,11 @@ app.use('/api/auth', authRouter);
 app.use('/api/contacts', contactsRouter);
 app.use('/api/mpesa', mpesaRouter);
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Dropesa server listening on ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 4000;
+  app.listen(PORT, () => {
+    console.log(`Dropesa server listening on ${PORT}`);
+  });
+}
+
+module.exports = app;
